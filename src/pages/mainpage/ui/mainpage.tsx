@@ -35,7 +35,7 @@ function MainPage() {
 	return (
 		<div className="mainpage">
 			<div className="mainpage__fon">
-				<img className="mainpage__fon__img" src="../fon.jpg" alt="" />
+				<img className="mainpage__fon__img" src="./fishapp/fon.jpg" alt="" />
 			</div>
 			<div className="mainpage__outlet">
 				{link ? (
@@ -74,10 +74,8 @@ function MainPage() {
 						<h3 className="colorLight roboto-medium">
 							{data?.name} {data?.subname}
 						</h3>
-						<h3 className="colorLight roboto-medium">{data?.age} років</h3>
-						<h3 className="colorLight roboto-medium">
-							{data?.city} {data?.country}
-						</h3>
+						<h3 className="colorLight roboto-medium">{data?.city}</h3>
+						<h3 className="colorLight roboto-medium">{data?.country}</h3>
 					</div>
 					<button
 						className="mainpage__navbar__left__link tacenter"

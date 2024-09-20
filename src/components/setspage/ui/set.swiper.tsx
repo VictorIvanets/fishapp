@@ -30,18 +30,20 @@ export default function SwiperComponent({ img }: SwiperProps) {
 					modifier: 1,
 					slideShadows: true,
 				}}
-				pagination={true}
+				// pagination={true}
 				modules={[EffectCoverflow, Pagination]}
 				// className="mySwiper"
 			>
 				{img
 					? img.map((i) => {
 							return (
-								<SwiperSlide className="swiperpage__picbox">
-									<img
-										className="swiperpage__img"
-										src={`${PREFIX_STATIC}static/${i}`}
-									/>
+								<SwiperSlide className="swiperpage__item">
+									<div className="swiperpage__picbox">
+										<img
+											className="swiperpage__img"
+											src={`${PREFIX_STATIC}static/${i}`}
+										/>
+									</div>
 								</SwiperSlide>
 							)
 					  })

@@ -10,11 +10,11 @@ function AuthLayout() {
 	return (
 		<div className="startpage">
 			<div className="startpage__fon">
-				<img className="startpage__fon__img" src="./fon.jpg" alt="" />
+				<img className="startpage__fon__img" src="./fishapp/fon.jpg" alt="" />
 			</div>
 			<div className="startpage__info">
 				<div className="startpage__info__logo">
-					<img src="./logo.png" alt="" />
+					<img src="../fishapp/logo.png" alt="" />
 				</div>
 				<h1 className="roboto-thin colorLight">MY FISHING</h1>
 			</div>
