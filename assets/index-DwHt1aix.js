@@ -1,1 +1,0 @@
-import{j as r,h as e}from"./index-D-HU46dd.js";function a(){return r.jsx("div",{className:"preloaderbox",children:r.jsx("div",{className:"preloader"})})}const{Axios:s,AxiosError:t,CanceledError:i,isCancel:n,CancelToken:d,VERSION:l,all:x,Cancel:c,isAxiosError:m,spread:p,toFormData:A,AxiosHeaders:C,HttpStatusCode:E,formToJSON:f,getAdapter:j,mergeConfig:u}=e;export{t as A,a as P};
