@@ -57,6 +57,7 @@ export const userSlice = createSlice({
 
 		builder.addCase(getlogin.rejected, (state, action) => {
 			state.loginErrorMass = action.error.message
+			state.isLoading = false
 		})
 	},
 })

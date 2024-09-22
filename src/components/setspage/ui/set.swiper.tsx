@@ -16,9 +16,6 @@ export default function SwiperComponent({ img }: SwiperProps) {
 		<div className="swiperpage">
 			<Swiper
 				className="swiperbox"
-				// spaceBetween={50}
-				// slidesPerView={1}
-
 				effect={'coverflow'}
 				grabCursor={true}
 				centeredSlides={true}
@@ -30,9 +27,7 @@ export default function SwiperComponent({ img }: SwiperProps) {
 					modifier: 1,
 					slideShadows: true,
 				}}
-				// pagination={true}
 				modules={[EffectCoverflow, Pagination]}
-				// className="mySwiper"
 			>
 				{img
 					? img.map((i) => {

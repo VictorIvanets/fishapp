@@ -77,7 +77,7 @@ const CustomMarker: React.FC<CustomMarkerProps> = ({ position }) => {
 										max="10"
 									/>
 								</div>
-								<button>submit</button>
+								<button>Додати</button>
 							</form>
 						</>
 					) : (

@@ -34,9 +34,6 @@ function MainPage() {
 
 	return (
 		<div className="mainpage">
-			<div className="mainpage__fon">
-				<img className="mainpage__fon__img" src="./fishapp/fon.jpg" alt="" />
-			</div>
 			<div className="mainpage__outlet">
 				{link ? (
 					<Outlet />
@@ -58,12 +55,12 @@ function MainPage() {
 						className="mainpage__navbar__left__link tacenter"
 						to={`/main/${login}/map`}
 					>
-						карта
+						до карти
 					</Link>
 					<Link
 						onClick={() => setLink(true)}
 						className="mainpage__navbar__left__link tacenter"
-						to={`/main/${login}/map`}
+						to={`/main/${login}/about`}
 					>
 						про сайт
 					</Link>
