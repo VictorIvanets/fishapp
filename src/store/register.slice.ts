@@ -1,21 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import {
-	PREFIX,
-	RegisterResponse,
-	UserRegisterState,
-} from './login.slice.types'
+import { RegisterResponse, UserRegisterState } from './login.slice.types'
 import axios from 'axios'
+import { PREFIX } from '../app/prefix'
 
 const initialState: UserRegisterState = {
 	login: null,
 	password: null,
 	name: null,
 	subname: null,
-	age: null,
-	sex: null,
 	country: null,
 	city: null,
-	img: null,
 }
 
 export const register = createAsyncThunk(
@@ -25,11 +19,8 @@ export const register = createAsyncThunk(
 		password: string
 		name: string
 		subname: string
-		age: number
-		sex: string
 		country: string
 		city: string
-		img: string
 	}) => {
 		const { data } = await axios.post<RegisterResponse>(
 			`${PREFIX}auth/register`,
@@ -38,11 +29,8 @@ export const register = createAsyncThunk(
 				password: params.password,
 				name: params.name,
 				subname: params.subname,
-				age: +params.age,
-				sex: params.sex,
 				country: params.country,
 				city: params.city,
-				img: params.img,
 			},
 		)
 		return data
