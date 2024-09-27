@@ -8,6 +8,8 @@ import { RootState } from '../../../store/store'
 import { fetchAllState, fetchDelState, fetchState } from './helpers/loadState'
 import { MapResponse } from '../../../store/map.slice.types'
 import SetFishing from './setFishing.component'
+import { getWeatherApi } from './helpers/getWeather'
+import Weather from '../../../widgets/wather/ui/weather'
 
 function MapPage() {
 	const [coords, setCoords] = useState<GeolocationPosition>()
@@ -22,29 +24,41 @@ function MapPage() {
 	const [loadAllState, setloadAllState] = useState<MapResponse[]>([])
 	const [viewAllstate, setViewAllstate] = useState(false)
 	const [viewResetAllset, setViewResetAllset] = useState(false)
+	const [weather, setWeather] = useState<string | object[]>()
 
 	useEffect(() => {
 		if (login) {
 			const data = fetchState(login)
-			data.then((a) => {
-				if (a && typeof a === 'object') {
-					setloadState(a.reverse())
+			data.then((sets) => {
+				if (sets && typeof sets === 'object') {
+					setloadState(sets.reverse())
 				}
-				if (a && typeof a === 'string') {
-					console.log(a)
+				if (sets && typeof sets === 'string') {
+					console.log(sets)
 				}
 			})
 		}
 	}, [login, state, deleteSet])
 
+	function viewAll() {
+		setViewAllstate(true)
+		setViewResult(false)
+		setViewResetAllset(true)
+	}
+	function notViewAll() {
+		setViewAllstate(false)
+		setViewResult(false)
+		setViewResetAllset(false)
+	}
+
 	useEffect(() => {
 		const data = fetchAllState()
-		data.then((a) => {
-			if (a && typeof a === 'object') {
-				setloadAllState(a)
+		data.then((allSets) => {
+			if (allSets && typeof allSets === 'object') {
+				setloadAllState(allSets)
 			}
-			if (a && typeof a === 'string') {
-				console.log(a)
+			if (allSets && typeof allSets === 'string') {
+				console.log(allSets)
 			}
 		})
 	}, [viewAllstate])
@@ -56,6 +70,8 @@ function MapPage() {
 				coords?.coords.longitude,
 			]
 			setNewCoords(normalCords)
+			const weather = getWeatherApi(normalCords[0], normalCords[1])
+			weather.then((res) => setWeather(res))
 		}
 	}, [coords])
 
@@ -96,7 +112,7 @@ function MapPage() {
 		<div className="mappage">
 			<div className="mappage__map">
 				{newCoords && !isNaN(newCoords[0]) ? (
-					<MapContainer center={newCoords} zoom={13} scrollWheelZoom={false}>
+					<MapContainer center={newCoords} zoom={13} scrollWheelZoom={true}>
 						<TileLayer
 							attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 							url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -130,9 +146,7 @@ function MapPage() {
 				{viewResetAllset ? (
 					<button
 						onClick={() => {
-							setViewAllstate(false)
-							setViewResult(false)
-							setViewResetAllset(false)
+							notViewAll()
 						}}
 						className="resultbtn"
 					>
@@ -141,9 +155,7 @@ function MapPage() {
 				) : (
 					<button
 						onClick={() => {
-							setViewAllstate(!viewAllstate)
-							setViewResult(false)
-							setViewResetAllset(true)
+							viewAll()
 						}}
 						className="resultbtn"
 					>
@@ -163,6 +175,13 @@ function MapPage() {
 						  ))
 						: ''}
 				</div>
+				{weather ? (
+					<div className="weatherpopup">
+						<Weather weather={weather} />
+					</div>
+				) : (
+					''
+				)}
 			</div>
 		</div>
 	)
