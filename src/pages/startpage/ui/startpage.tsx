@@ -8,7 +8,7 @@ function AuthLayout() {
 	const { login, jwt } = useSelector((s: RootState) => s.user)
 
 	return (
-		<div className="startpage">
+		<div className={`startpage ${viewLogin ? 'hiddenlogo authrow' : ''}`}>
 			<div className="startpage__info">
 				<div className="startpage__info__logo">
 					<img src="../fishapp/logoMf.png" alt="" />
