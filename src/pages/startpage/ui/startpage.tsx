@@ -11,10 +11,10 @@ function AuthLayout() {
 		<div className={`startpage ${viewLogin ? 'hiddenlogo authrow' : ''}`}>
 			<div className="startpage__info">
 				<div className="startpage__info__logo">
-					<img src="../fishapp/logoMf.png" alt="" />
+					<img src="../fishapp/logoMf-01.svg" alt="" />
 				</div>
 				<Link className="light tacenter roboto-light" to={`/rules`}>
-					<p>правила користування</p>
+					правила користування
 				</Link>
 			</div>
 
