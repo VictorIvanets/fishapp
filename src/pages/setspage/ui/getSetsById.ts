@@ -34,3 +34,19 @@ export async function loadFoto(
 		return 'error'
 	}
 }
+
+export async function loadFotoInFolder(
+	setId: string | undefined,
+): Promise<string | string[]> {
+	console.log(setId)
+	try {
+		const { data } = await axios.get<string[]>(`${PREFIX}getfoto/get/${setId}`)
+
+		return data
+	} catch (e) {
+		if (e instanceof AxiosError) {
+			return e.message
+		}
+		return 'error'
+	}
+}
