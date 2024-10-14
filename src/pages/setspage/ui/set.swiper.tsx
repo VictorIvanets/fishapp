@@ -6,6 +6,7 @@ import 'swiper/css/pagination'
 import { PREFIX_STATIC } from '../../../app/prefix'
 import { useEffect, useState } from 'react'
 import { loadFotoInFolder } from './getSetsById'
+import { PreLoader } from '../../../widgets/PreLoader'
 
 interface SwiperProps {
 	img: string[]
@@ -13,35 +14,53 @@ interface SwiperProps {
 }
 
 export default function SwiperComponent({ img, setId }: SwiperProps) {
-	const [fotoInFolder, setFotoInFolder] = useState<string | string[]>()
+	const [fotoInFolder, setFotoInFolder] = useState<string[]>()
 
 	useEffect(() => {
 		const foto = loadFotoInFolder(`${setId}`)
 
 		if (foto) {
-			foto.then((res) => setFotoInFolder(res))
-			console.log(fotoInFolder)
+			foto.then((res) =>
+				setTimeout(() => {
+					if (Array.isArray(res)) {
+						setFotoInFolder(res.reverse())
+					} else {
+						console.log(res)
+					}
+				}, 1000),
+			)
 		}
-	}, [setId])
+	}, [img, setFotoInFolder, setId])
 
+	console.log(fotoInFolder)
 	return (
 		<div className="swiperpage">
-			<Swiper className="swiperbox" spaceBetween={50} slidesPerView={1}>
-				{img && fotoInFolder?.length
-					? img.map((i) => {
+			{fotoInFolder ? (
+				<Swiper className="swiperbox" spaceBetween={50} slidesPerView={1}>
+					{fotoInFolder ? (
+						fotoInFolder.map((i) => {
 							return (
-								<SwiperSlide className="swiperpage__item">
+								<SwiperSlide key={i} className="swiperpage__item">
 									<div className="swiperpage__picbox">
 										<img
 											className="swiperpage__img"
-											src={`${PREFIX_STATIC}static/${i}`}
+											src={`${PREFIX_STATIC}static/${setId}/${i}`}
 										/>
 									</div>
 								</SwiperSlide>
 							)
-					  })
-					: ''}
-			</Swiper>
+						})
+					) : (
+						<SwiperSlide className="swiperpage__item">
+							<div className="swiperpage__picbox">
+								<img className="swiperpage__img" src="./fonsecond.jpg" />
+							</div>
+						</SwiperSlide>
+					)}
+				</Swiper>
+			) : (
+				<PreLoader />
+			)}
 		</div>
 	)
 }

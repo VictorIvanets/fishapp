@@ -38,7 +38,6 @@ export async function loadFoto(
 export async function loadFotoInFolder(
 	setId: string | undefined,
 ): Promise<string | string[]> {
-	console.log(setId)
 	try {
 		const { data } = await axios.get<string[]>(`${PREFIX}getfoto/get/${setId}`)
 
