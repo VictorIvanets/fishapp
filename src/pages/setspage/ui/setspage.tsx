@@ -114,15 +114,6 @@ function SetsPage() {
 
 							{login == load.login ? (
 								<div className="loadimg">
-									<h2
-										className="loadimg__head"
-										onClick={() => {
-											setviewloadFoto(!viewloadFoto)
-											setNameFiles('Вибрати фото')
-										}}
-									>
-										{!viewloadFoto ? 'Завантажити фото' : 'приховати'}
-									</h2>
 									{viewloadFoto ? (
 										<>
 											<form
@@ -144,19 +135,20 @@ function SetsPage() {
 													завантажити
 												</button>
 											</form>
-											<button
-												onClick={() => {
-													setNameFiles('Вибрати фото')
-													setFiles([])
-												}}
-												className="loadimg__btncansel"
-											>
-												відмінти
-											</button>
 										</>
 									) : (
 										''
 									)}
+									<h3
+										className="loadimg__head"
+										onClick={() => {
+											setviewloadFoto(!viewloadFoto)
+											setNameFiles('Вибрати фото')
+											setFiles([])
+										}}
+									>
+										{!viewloadFoto ? 'ДОДАТИ ФОТО' : 'ВІДМІНИТИ'}
+									</h3>
 								</div>
 							) : (
 								''
