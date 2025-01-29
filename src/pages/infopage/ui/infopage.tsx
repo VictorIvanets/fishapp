@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setSets } from '../../../store/set.slise'
 import { useEffect } from 'react'
 import { allSetSets } from '../../../store/allset.slice'
-import iconfishpage_map from '/iconfishpage_map.svg'
 
 function InfoPage() {
 	const { login } = useParams()
